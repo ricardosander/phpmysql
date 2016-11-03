@@ -16,7 +16,8 @@ if (isset($_GET['removido']) && $_GET['removido'] == true) {
         <td>Preço</td>
         <td>Descrição</td>
         <td>Categoria</td>
-        <td>Opções</td>
+        <td></td>
+        <td></td>
     </tr>
 <?php
 foreach ($produtos as $produto) {
@@ -26,6 +27,9 @@ foreach ($produtos as $produto) {
         <td><?= $produto['preco']  ?></td>
         <td><?= substr($produto['descricao'], 0, 40);  ?></td>
         <td><?= $produto['categoria']  ?></td>
+        <td>
+            <a class="btn btn-primary" href="produto-altera-formulario.php?id=<?=$produto['id']?>">alterar</a>
+        </td>
         <td>
             <form action="remove-produto.php" method="post" >
                 <input type="hidden" name="id" value="<?=$produto['id']?>" />

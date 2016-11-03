@@ -7,6 +7,19 @@ function insereProduto($conexao, $nome, $preco, $descricao, $categoria_id, $usad
     return mysqli_query($conexao, $query);
 }
 
+function buscaProduto($conexao, $id) {
+
+	$query = "select * from produtos where id = {$id}";
+	$resultado = mysqli_query($conexao, $query);
+	return mysqli_fetch_assoc($resultado);
+}
+
+function alteraProduto($conexao, $id, $nome, $preco, $descricao, $categoria_id, $usado) {
+
+	$query = "update produtos set nome = '{$nome}', preco = {$preco}, descricao = '{$descricao}', categoria_id = {$categoria_id}, usado = {$usado} where id = {$id}";
+	return mysqli_query($conexao, $query);
+}
+
 function removerProduto($conexao, $id) {
 
     $query = "delete from produtos where id = {$id}";
