@@ -1,9 +1,10 @@
 <?php
 include("banco-produto.php");
-$nome = $_GET['nome'];
-$preco = $_GET['preco'];
+$nome = $_POST['nome'];
+$preco = $_POST['preco'];
+$descricao = $_POST['descricao'];
 
-$resultadoInsercao = insereProduto($conexao, $nome, $preco);
+$resultadoInsercao = insereProduto($conexao, $nome, $preco, $descricao);
 
 include("cabecalho.php");
 if ($resultadoInsercao) {
