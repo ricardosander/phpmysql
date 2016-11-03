@@ -1,9 +1,9 @@
 <?php
 include("conecta.php");
 
-function insereProduto($conexao, $nome, $preco, $descricao) {
+function insereProduto($conexao, $nome, $preco, $descricao, $categoria_id) {
 
-    $query = "insert into produtos (nome, preco, descricao) values ('{$nome}', {$preco}, '{$descricao}')";
+    $query = "insert into produtos (nome, preco, descricao, categoria_id) values ('{$nome}', {$preco}, '{$descricao}', {$categoria_id})";
     return mysqli_query($conexao, $query);
 }
 
@@ -15,7 +15,7 @@ function removerProduto($conexao, $id) {
 
 function listaProdutos($conexao) {
 
-    $query = "select * from produtos";
+    $query = "select p.*, c.nome as categoria from produtos as p inner join categorias as c on c.id = p.categoria_id";
     $resultado = mysqli_query($conexao, $query);
 
     $produtos = array();

@@ -1,3 +1,4 @@
+drop database if exists loja;
 create database loja;
 use loja;
 create table produtos (id integer auto_increment primary key, nome varchar(255), preco decimal(10,2));
@@ -6,3 +7,7 @@ insert into produtos (nome, preco) values ('Motocicleta', 10000);
 insert into produtos (nome, preco) values ('Bicicleta', 300);
 alter table produtos add column descricao text;
 update produtos set descricao = 'Descrição deste produto.';
+create table categorias (id integer auto_increment primary key, nome varchar(255));
+insert into categorias (nome) values ('esporte'), ('escolar'), ('mobilidade');
+alter table produtos add column categoria_id integer;
+update produtos set categoria_id = 3;
