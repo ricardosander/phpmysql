@@ -11,3 +11,4 @@ create table categorias (id integer auto_increment primary key, nome varchar(255
 insert into categorias (nome) values ('esporte'), ('escolar'), ('mobilidade');
 alter table produtos add column categoria_id integer;
 update produtos set categoria_id = 3;
+alter table produtos add column usado boolean default false;

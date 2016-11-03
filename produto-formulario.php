@@ -32,6 +32,10 @@ include("cabecalho.php"); ?>
                 </td>
             </tr>
             <tr>
+                <td></td>
+                <td><input type="checkbox" name="usado" value="truer"> Usado</td>
+            </tr>
+            <tr>
                 <td>
                     <input class="btn btn-primary" type="submit" value="Enviar">
                 </td>
