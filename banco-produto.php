@@ -7,6 +7,11 @@ function insereProduto($conexao, $nome, $preco) {
     return mysqli_query($conexao, $query);
 }
 
+function removerProduto($conexao, $id) {
+
+    $query = "delete from produtos where id = {$id}";
+    return mysqli_query($conexao, $query);
+}
 
 function listaProdutos($conexao) {
 
