@@ -1,16 +1,16 @@
 <table class="table">
     <tr>
         <td>Nome:</td>
-        <td><input class="form-control" type="text" name="nome" value="<?=$produto['nome']?>"></td>
+        <td><input class="form-control" type="text" name="nome" value="<?=$produto->nome?>"></td>
     </tr>
     <tr>
         <td>Preco:</td>
-        <td><input class="form-control" type="number" name="preco" value="<?=$produto['preco']?>"></td>
+        <td><input class="form-control" type="number" name="preco" value="<?=$produto->preco?>"></td>
     </tr>
     <tr>
         <td>Descrição:</td>
         <td>
-            <textarea name="descricao" class="form-control"><?=$produto['descricao']?></textarea>
+            <textarea name="descricao" class="form-control"><?=$produto->descricao?></textarea>
         </td>
     </tr>
     <tr>
@@ -18,9 +18,9 @@
         <td>
             <select name="categoria_id" class="form-control">
                 <?php foreach ($categorias as $categoria) {
-                    $selected = $categoria['id'] == $produto['categoria_id'] ? "selected=\"selected\"" : "";
+                    $selected = $categoria->id == $produto->categoria->id ? "selected=\"selected\"" : "";
                     ?>
-                    <option <?=$selected?> value="<?=$categoria['id']?>"><?=$categoria['nome']?></option>
+                    <option <?=$selected?> value="<?=$categoria->id?>"><?=$categoria->nome?></option>
                 <?php  } ?>
             </select>
         </td>

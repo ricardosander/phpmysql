@@ -2,13 +2,17 @@
 session_start();
 require_once("banco-produto.php");
 require_once("class/Produto.php");
+require_once("class/Categoria.php");
+
+$categoria = new Categoria();
+$categoria->id = $_POST['categoria_id'];
 
 $produto = new Produto();
 $produto->id = $_POST['id'];
 $produto->nome = $_POST['nome'];
 $produto->preco = $_POST['preco'];
 $produto->descricao = $_POST['descricao'];
-$produto->categoria_id = $_POST['categoria_id'];
+$produto->categoria = $categoria;
 $produto->usado = isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false";
 
 $resultadoAlteracao = alteraProduto($conexao, $produto);
