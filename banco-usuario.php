@@ -1,5 +1,5 @@
 <?php
-include("conecta.php");
+require_once("conecta.php");
 function buscaUsuario($conexao, $email, $senha) {
 
     $email = mysqli_real_escape_string($conexao, $email);

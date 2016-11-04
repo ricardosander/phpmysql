@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("logica-usuario.php");
-include("banco-produto.php");
+require_once("logica-usuario.php");
+require_once("banco-produto.php");
 
 verificaUsuario();
 

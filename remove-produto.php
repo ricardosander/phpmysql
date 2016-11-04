@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("banco-produto.php");
+require_once("banco-produto.php");
 
 $id = $_POST['id'];
 removerProduto($conexao, $id);

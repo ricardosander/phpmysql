@@ -1,8 +1,8 @@
 <?php
-include("banco-produto.php");
+require_once("banco-produto.php");
 $produtos = listaProdutos($conexao);
 
-include("cabecalho.php");
+require_once("cabecalho.php");
 
 if (isset($_GET['removido']) && $_GET['removido'] == true) {
 ?>
@@ -42,4 +42,4 @@ foreach ($produtos as $produto) {
 ?>
 </table>
 <?php
-include("rodape.php");
+require_once("rodape.php");

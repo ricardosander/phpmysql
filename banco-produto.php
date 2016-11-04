@@ -1,5 +1,5 @@
 <?php
-include("conecta.php");
+require_once("conecta.php");
 
 function insereProduto($conexao, $nome, $preco, $descricao, $categoria_id, $usado) {
 

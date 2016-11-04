@@ -23,7 +23,7 @@
 
         <?php
         session_start();
-        include("mostra-alerta.php");
+        require_once("mostra-alerta.php");
 
         mostraAlerta('success');
         mostraAlerta('danger');
