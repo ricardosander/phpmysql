@@ -1,5 +1,8 @@
 <?php
+include("logica-usuario.php");
 include("banco-categorias.php");
+
+verificaUsuario();
 
 $categorias = listaCategorias($conexao);
 

@@ -1,5 +1,6 @@
 <?php
 include("banco-usuario.php");
+include("logica-usuario.php");
 
 $email = $_POST['email'];
 $senha = $_POST['senha'];
@@ -10,5 +11,5 @@ if ($usuario == null) {
     header("Location: index.php?logado=0");
     die;
 }
-setcookie("usuario_logado", $email);
+logaUsuario($email);
 header("Location: index.php?logado=1");
