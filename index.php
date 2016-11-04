@@ -5,6 +5,10 @@ include("cabecalho.php");
 <h1>Bem-vindo!</h1>
 
 <?php
+if (isset($_GET['deslogado']) && $_GET['deslogado']) { ?>
+    <p class="alert-success">Deslogado com sucesso!</p>
+    <?php
+}
 if (isset($_GET['logado']) && $_GET['logado']) { ?>
     <p class="alert-success">Logado com sucesso!</p>
     <?php
@@ -21,6 +25,7 @@ if (isset($_GET['falhaDeSeguranca']) && $_GET['falhaDeSeguranca']) { ?>
 if (usuarioEstaLogado()) {
     ?>
     <p class="text-success">Você está logado como <?=usuarioLogado()?></p>
+    <a class="btn btn-danger" href="logout.php">Deslogar</a>
     <?php
 } else {
 ?>
