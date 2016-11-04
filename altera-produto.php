@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("banco-produto.php");
 $id = $_POST['id'];
 $nome = $_POST['nome'];
@@ -11,14 +12,10 @@ $resultadoAlteracao = alteraProduto($conexao, $id, $nome, $preco, $descricao, $c
 
 include("cabecalho.php");
 if ($resultadoAlteracao) {
-	?>
-	<p class="text-success">Produto <?= $nome ?>, <?= $preco ?> alterado com sucesso!</p>
-	<?php
+	$_SESSION['success'] = "Produto {$nome}, {$preco} alterado com sucesso!";
 } else {
 	$mensagem = mysqli_error($conexao);
-	?>
-	<p class="text-danger">Produto <?= $nome ?> não foi alterado! <?= $mensagem ?></p>
-	<?php
+	$_SESSION['danger'] = "Produto {$nome}ão foi alterado!{$mensagem}";
 }
-include("rodape.php");
-mysqli_close($conexao);
+header("Location: produto-altera-formulario.php?id={$id}");
+die;

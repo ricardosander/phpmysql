@@ -20,3 +20,19 @@
 </div>
 <div class="container">
     <div class="principal">
+
+        <?php
+        session_start();
+
+        if (isset($_SESSION['success']) && $_SESSION['success']) { ?>
+
+            <p class="alert-success"><?=$_SESSION['success']?></p>
+            <?php
+            unset($_SESSION['success']);
+        }
+        if (isset($_SESSION['danger']) && $_SESSION['danger']) { ?>
+
+        <p class="alert-success"><?=$_SESSION['danger']?></p>
+            <?php
+            unset($_SESSION['danger']);
+        }

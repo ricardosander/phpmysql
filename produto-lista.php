@@ -6,7 +6,7 @@ include("cabecalho.php");
 
 if (isset($_GET['removido']) && $_GET['removido'] == true) {
 ?>
-    <p class="text-success">Produto removido com sucesso.</p>
+    <p class="text-success"></p>
 <?php
 }
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("logica-usuario.php");
 include("banco-produto.php");
 
@@ -12,16 +13,12 @@ $usado = isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false";
 
 $resultadoInsercao = insereProduto($conexao, $nome, $preco, $descricao, $categoria_id, $usado);
 
-include("cabecalho.php");
 if ($resultadoInsercao) {
-    ?>
-    <p class="text-success">Produto <?= $nome ?>, <?= $preco ?> adicionado com sucesso!</p>
-    <?php
+    $_SESSION['success'] = "Produto {$nome}, {$preco} adicionado com sucesso!";
 } else {
+
     $mensagem = mysqli_error($conexao);
-    ?>
-    <p class="text-danger">Produto <?= $nome ?> não foi adicionado! <?= $mensagem ?></p>
-<?php
+    $_SESSION['danger'] = "Produto {$nome} não foi adicionado! {$mensagem}";
 }
-include("rodape.php");
-mysqli_close($conexao);
+header("Location: produto-formulario.php");
+die;

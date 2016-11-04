@@ -1,4 +1,6 @@
 <?php
 include("logica-usuario.php");
 logout();
-header("Location: index.php?deslogado=1");
+session_start();
+$_SESSION['success'] = "Deslogado com sucesso!";
+header("Location: index.php");
