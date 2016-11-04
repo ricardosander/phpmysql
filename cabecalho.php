@@ -23,16 +23,7 @@
 
         <?php
         session_start();
+        include("mostra-alerta.php");
 
-        if (isset($_SESSION['success']) && $_SESSION['success']) { ?>
-
-            <p class="alert-success"><?=$_SESSION['success']?></p>
-            <?php
-            unset($_SESSION['success']);
-        }
-        if (isset($_SESSION['danger']) && $_SESSION['danger']) { ?>
-
-        <p class="alert-success"><?=$_SESSION['danger']?></p>
-            <?php
-            unset($_SESSION['danger']);
-        }
+        mostraAlerta('success');
+        mostraAlerta('danger');
