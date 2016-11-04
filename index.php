@@ -9,6 +9,12 @@ if (isset($_GET['logado']) && $_GET['logado']) { ?>
     <p class="alert-danger">Usuário ou senha inválida!</p>
     <?php
 }
+
+if (isset($_COOKIE['usuario_logado'])) {
+    ?>
+    <p class="text-success">Você está logado como <?=$_COOKIE['usuario_logado'] ?></p>
+    <?php
+} else {
 ?>
 
     <form method="post" action="login.php">
@@ -27,4 +33,6 @@ if (isset($_GET['logado']) && $_GET['logado']) { ?>
         </tr>
     </table>
 </form>
-<?php include("rodape.php");
+<?php
+}
+include("rodape.php");

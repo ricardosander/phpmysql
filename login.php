@@ -10,4 +10,5 @@ if ($usuario == null) {
     header("Location: index.php?logado=0");
     die;
 }
+setcookie("usuario_logado", $email);
 header("Location: index.php?logado=1");
