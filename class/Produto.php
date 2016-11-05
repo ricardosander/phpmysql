@@ -55,6 +55,14 @@ class Produto {
         $this->tipo = $tipo;
     }
 
+    public function setCategoria(Categoria $categoria) {
+        $this->categoria = $categoria;
+    }
+
+    public function setUsado($usado) {
+        $this->usado = $usado;
+    }
+
     public function precoComDesconto($valor = 0.1) {
 
         if ($valor > 0 && $valor <= 0.5) {
@@ -67,8 +75,31 @@ class Produto {
         return $this instanceof Livro;
     }
 
+    public function temWaterMark() {
+        return $this instanceof Ebook;
+    }
+
+    public function temTaxaImpressao() {
+        return $this instanceof LivroFisico;
+    }
+
     public function calculaImposto() {
         return $this->preco * 0.195;
+    }
+
+    public function atualizaBaseadoEm($params) {
+
+        if ($this->temIsbn()) {
+            $this->setIsbn($params["isbn"]);
+        }
+
+        if ($this->temWaterMark()) {
+            $this->setWaterMark($params["waterMark"]);
+        }
+
+        if ($this->temTaxaImpressao()) {
+            $this->setTaxaImpressao($params["taxaImpressao"]);
+        }
     }
 
     public function __toString() {

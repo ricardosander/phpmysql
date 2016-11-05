@@ -34,12 +34,26 @@
         <td>
             <select name="tipo" class="form-control">
                 <?php
-                $tipos = array("Produto", "Livro");
+                $tipos = array("Produto", "Livro Fisico", "Ebook");
                 foreach ($tipos as $tipo) {
-                    $selected = $produto->getTipo() == $tipo ? "selected=\"selected\"" : "";
+
+                    $valor = str_replace(" ", "", $tipo);
+                    $selected = $produto->getTipo() == $valor ? "selected=\"selected\"" : "";
+
+                    if ($tipo == "Livro Fisico") {
+                        ?>
+                        <optgroup label="Livros">
+                        <?php
+                    }
                     ?>
-                    <option <?=$selected?> value="<?=$tipo?>"><?=$tipo?></option>
-                    <?php $selected = ""; ?>
+                    <option <?=$selected?> value="<?=$valor?>"><?=$tipo?></option>
+                    <?php $selected = "";
+                    if ($tipo == "Ebook") {
+                        ?>
+                        </optgroup>
+                        <?php
+                    }
+                    ?>
                 <?php  } ?>
             </select>
         </td>
@@ -47,6 +61,18 @@
     <tr>
         <td>ISBN (Se for um livro)</td>
         <td>
-            <input type="text" name="isbn" value="<?php echo  $produto->temIsbn() ? $produto->getIsbn() : ""; ?>">
+            <input class="form-control" type="text" name="isbn" value="<?php echo  $produto->temIsbn() ? $produto->getIsbn() : ""; ?>">
+        </td>
+    </tr>
+    <tr>
+        <td>Water Mark (Se for um Ebook)</td>
+        <td>
+            <input class="form-control" type="text" name="waterMark" value="<?php echo  $produto->temWaterMark() ? $produto->getWaterMark() : ""; ?>">
+        </td>
+    </tr>
+    <tr>
+        <td>Taxa Impressão (Se for um Livro Físico)</td>
+        <td>
+            <input class="form-control" type="text" name="taxaImpressao" value="<?php echo  $produto->temTaxaImpressao() ? $produto->getTaxaImpressao() : ""; ?>">
         </td>
     </tr>

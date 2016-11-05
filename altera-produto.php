@@ -7,14 +7,15 @@ $usado = (isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
 $categoria = new Categoria();
 $categoria->setId($_POST['categoria_id']);
 
-if ($_POST['tipo'] == "Livro") {
-    $produto = new Livro($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
-    $produto->setIsbn($_POST['isbn']);
-} else {
-    $produto = new Produto($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
-}
+$tipo = $_POST['tipo'];
+
+$factory = new ProdutoFactory();
+$produto = $factory->criaPor($tipo, $_POST);
+$produto->atualizaBaseadoEm($_POST);
 $produto->setTipo($_POST['tipo']);
 $produto->setId($_POST['id']);
+$produto->setCategoria($categoria);
+$produto->setUsado($usado);
 
 $produtoDao = new ProdutoDao($conexao);
 $resultadoAlteracao = $produtoDao->alteraProduto($produto);
