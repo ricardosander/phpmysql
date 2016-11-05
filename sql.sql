@@ -15,3 +15,4 @@ alter table produtos add column usado boolean default false;
 create table usuarios (id integer auto_increment primary key, email varchar(255), senha varchar(255));
 insert into usuarios (email,senha) values ('rcksander@gmail.com', '9106689bdeb64ab47a9449a4719ab236');
 ALTER TABLE produtos ADD COLUMN isbn VARCHAR(255);
+ALTER TABLE produtos ADD COLUMN tipoProduto VARCHAR(255);

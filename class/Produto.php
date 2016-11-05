@@ -9,6 +9,7 @@ class Produto {
     private $descricao;
     private $categoria;
     private $usado;
+    private $tipo;
 
     public function __construct($nome, $preco, $descricao, Categoria $categoria, $usado) {
 
@@ -44,6 +45,14 @@ class Produto {
 
     public function getUsado() {
         return $this->usado;
+    }
+
+    public function getTipo() {
+        return $this->tipo;
+    }
+
+    public function setTipo($tipo) {
+        $this->tipo = $tipo;
     }
 
     public function precoComDesconto($valor = 0.1) {

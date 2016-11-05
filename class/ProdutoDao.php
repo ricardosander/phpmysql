@@ -15,14 +15,15 @@ class ProdutoDao {
         $preco        = mysqli_real_escape_string($this->conexao, $produto->getPreco());
         $categoria_id = mysqli_real_escape_string($this->conexao, $produto->getCategoria()->getId());
         $usado        = mysqli_real_escape_string($this->conexao, $produto->getUsado());
+        $tipo         = mysqli_real_escape_string($this->conexao, $produto->getTipo());
 
         $isbn = "";
         if ($produto->temIsbn()) {
             $isbn = mysqli_real_escape_string($this->conexao, $produto->getIsbn());
         }
 
-        $query = "insert into produtos (nome, preco, descricao, categoria_id, usado, isbn) 
-                    values ('{$nome}', {$preco}, '{$descricao}', {$categoria_id}, $usado, '{$isbn}')";
+        $query = "insert into produtos (nome, preco, descricao, categoria_id, usado, tipoProduto, isbn) 
+                    values ('{$nome}', {$preco}, '{$descricao}', {$categoria_id}, $usado, '{$tipo}', '{$isbn}')";
 
         return mysqli_query($this->conexao, $query);
     }
@@ -41,19 +42,21 @@ class ProdutoDao {
         $categoria->setId($produtoArray['categoria_id']);
         $categoria->setNome($produtoArray['categoria']);
 
-        if (empty($produtoArray['isbn'])) {
-            $produto = new Produto($produtoArray['nome'],
+        if ($produtoArray['tipoProduto'] == 'Livro') {
+            $produto = new Livro($produtoArray['nome'],
                                $produtoArray['preco'],
                                $produtoArray['descricao'],
                                $categoria,
                                $produtoArray['usado']);
+            $produto->setIsbn($produtoArray['isbn']);
+            $produto->setTipo($produtoArray['tipoProduto']);
         } else {
-            $produto = new Livro($produtoArray['nome'],
+            $produto = new Produto($produtoArray['nome'],
                                    $produtoArray['preco'],
                                    $produtoArray['descricao'],
                                    $categoria,
                                    $produtoArray['usado']);
-            $produto->setIsbn($produtoArray['isbn']);
+            $produto->setTipo('Produto');
         }
 
 
@@ -70,6 +73,7 @@ class ProdutoDao {
         $preco        = mysqli_real_escape_string($this->conexao, $produto->getPreco());
         $categoria_id = mysqli_real_escape_string($this->conexao, $produto->getCategoria()->getId());
         $usado        = mysqli_real_escape_string($this->conexao, $produto->getUsado());
+        $tipo         = mysqli_real_escape_string($this->conexao, $produto->getTipo());
 
         $isbn = "";
         if ($produto->temIsbn()) {
@@ -78,7 +82,7 @@ class ProdutoDao {
 
         $query = "update produtos set 
                     nome = '{$nome}', preco = {$preco}, descricao = '{$descricao}', categoria_id = {$categoria_id}, 
-                    usado = {$usado}, isbn = {$isbn} 
+                    usado = {$usado}, tipoProduto = '{$tipo}', isbn = {$isbn} 
                   where id = {$id}";
 
         return mysqli_query($this->conexao, $query);
@@ -105,15 +109,7 @@ class ProdutoDao {
             $categoria->setId($produtoArray['categoria_id']);
             $categoria->setNome($produtoArray['categoria']);
 
-            if (empty($produtoArray['isbn'])) {
-                $produto = new Produto($produtoArray['nome'],
-                                       $produtoArray['preco'],
-                                       $produtoArray['descricao'],
-                                       $categoria,
-                                       $produtoArray['usado']
-                );
-            } else {
-
+            if ($produtoArray['tipoProduto'] == 'Livro') {
                 $produto = new Livro($produtoArray['nome'],
                                        $produtoArray['preco'],
                                        $produtoArray['descricao'],
@@ -121,6 +117,16 @@ class ProdutoDao {
                                        $produtoArray['usado']
                 );
                 $produto->setIsbn($produtoArray['isbn']);
+                $produto->setTipo($produtoArray['tipoProduto']);
+            } else {
+
+                $produto = new Produto($produtoArray['nome'],
+                                       $produtoArray['preco'],
+                                       $produtoArray['descricao'],
+                                       $categoria,
+                                       $produtoArray['usado']
+                );
+                $produto->setTipo("Produto");
             }
 
             $produto->setId($produtoArray['id']);

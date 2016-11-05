@@ -30,6 +30,21 @@
         <td><input type="checkbox" name="usado" <?=$usado?> value="true"> Usado</td>
     </tr>
     <tr>
+        <td>Tipo:</td>
+        <td>
+            <select name="tipo" class="form-control">
+                <?php
+                $tipos = array("Produto", "Livro");
+                foreach ($tipos as $tipo) {
+                    $selected = $produto->getTipo() == $tipo ? "selected=\"selected\"" : "";
+                    ?>
+                    <option <?=$selected?> value="<?=$tipo?>"><?=$tipo?></option>
+                    <?php $selected = ""; ?>
+                <?php  } ?>
+            </select>
+        </td>
+    </tr>
+    <tr>
         <td>ISBN (Se for um livro)</td>
         <td>
             <input type="text" name="isbn" value="<?php echo  $produto->temIsbn() ? $produto->getIsbn() : ""; ?>">

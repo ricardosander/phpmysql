@@ -9,13 +9,14 @@ $usado = (isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
 $categoria = new Categoria();
 $categoria->setId($_POST['categoria_id']);
 
-if (!empty($_POST['isbn'])) {
+if ($_POST['tipo'] == "Livro") {
 
     $produto = new Livro($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
     $produto->setIsbn($_POST['isbn']);
 } else {
     $produto = new Produto($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
 }
+$produto->setTipo($_POST['tipo']);
 
 $produtoDao = new ProdutoDao($conexao);
 $resultadoInsercao = $produtoDao->insereProduto($produto);
