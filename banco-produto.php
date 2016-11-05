@@ -25,18 +25,18 @@ function buscaProduto($conexao, $id) {
 
 	$produtoArray = mysqli_fetch_assoc($resultado);
 
-	$produto = new Produto();
 	$categoria = new Categoria();
 
 	$categoria->setId($produtoArray['categoria_id']);
 	$categoria->setNome($produtoArray['categoria']);
 
-	$produto->setCategoria($categoria);
+	$produto = new Produto($produtoArray['nome'],
+                           $produtoArray['preco'],
+                           $produtoArray['descricao'],
+                           $categoria,
+                           $produtoArray['usado']);
+
 	$produto->setId($produtoArray['id']);
-	$produto->setNome($produtoArray['nome']);
-	$produto->setPreco($produtoArray['preco']);
-	$produto->setDescricao($produtoArray['descricao']);
-	$produto->setUsado($produtoArray['usado']);
 
 	return $produto;
 }
@@ -69,18 +69,18 @@ function listaProdutos($conexao) {
     $produtos = array();
     while ($produtoArray = mysqli_fetch_assoc($resultado)) {
 
-    	$produto = new Produto();
-			$categoria = new Categoria();
+        $categoria = new Categoria();
 
-			$categoria->setId($produtoArray['categoria_id']);
-			$categoria->setNome($produtoArray['categoria']);
+		$categoria->setId($produtoArray['categoria_id']);
+		$categoria->setNome($produtoArray['categoria']);
 
-			$produto->setCategoria($categoria);
+    	    $produto = new Produto($produtoArray['nome'],
+                                   $produtoArray['preco'],
+                                   $produtoArray['descricao'],
+                                   $categoria,
+                                   $produtoArray['usado']);
+
 			$produto->setId($produtoArray['id']);
-			$produto->setNome($produtoArray['nome']);
-			$produto->setPreco($produtoArray['preco']);
-			$produto->setDescricao($produtoArray['descricao']);
-			$produto->setUsado($produtoArray['usado']);
 
 			array_push($produtos, $produto);
     }

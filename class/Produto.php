@@ -10,6 +10,14 @@ class Produto {
     private $categoria;
     private $usado;
 
+    public function __construct($nome, $preco, $descricao, Categoria $categoria, $usado) {
+
+        $this->nome = $nome;
+        $this->preco = $preco;
+        $this->descricao = $descricao;
+        $this->categoria = $categoria;
+        $this->usado = $usado;
+    }
     public function getId() {
         return $this->id;
     }
@@ -22,40 +30,20 @@ class Produto {
         return $this->nome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
-    }
-
     public function getPreco() {
         return $this->preco;
-    }
-
-    public function setPreco($preco) {
-        $this->preco = $preco;
     }
 
     public function getDescricao() {
         return $this->descricao;
     }
 
-    public function setDescricao($descricao) {
-        $this->descricao = $descricao;
-    }
-
     public function getCategoria() {
         return $this->categoria;
     }
 
-    public function setCategoria($categoria) {
-        $this->categoria = $categoria;
-    }
-
     public function getUsado() {
         return $this->usado;
-    }
-
-    public function setUsado($usado) {
-        $this->usado = $usado;
     }
 
     public function precoComDesconto($valor = 0.1) {
@@ -66,4 +54,8 @@ class Produto {
         return $this->preco;
     }
 
+    public function __toString() {
+        return "Nome: {$this->nome}, preço: {$this->preco}, categoria: "
+               . (isset($this->categoria) ? $this->categoria->getNome() : "");
+    }
 }

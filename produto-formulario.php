@@ -5,7 +5,9 @@ require_once("banco-categorias.php");
 verificaUsuario();
 
 $categorias = listaCategorias($conexao);
-$produto = new Produto();
+$categoria = new Categoria();
+$categoria->setId(1);
+$produto = new Produto("", "", "", $categoria, false);
 $usado = false;
 require_once("cabecalho.php"); ?>
     <h1>Formulário de Produto</h1>

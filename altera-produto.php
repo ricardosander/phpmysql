@@ -4,16 +4,17 @@ require_once("banco-produto.php");
 require_once("class/Produto.php");
 require_once("class/Categoria.php");
 
+$usado = (isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
+
 $categoria = new Categoria();
 $categoria->setId($_POST['categoria_id']);
 
-$produto = new Produto();
+$produto = new Produto($_POST['nome'],
+                       $_POST['preco'],
+                       $_POST['descricao'],
+                       $categoria,
+                       $usado);
 $produto->setId($_POST['id']);
-$produto->setNome($_POST['nome']);
-$produto->setPreco($_POST['preco']);
-$produto->setDescricao($_POST['descricao']);
-$produto->setCategoria($categoria);
-$produto->setUsado(isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
 
 $resultadoAlteracao = alteraProduto($conexao, $produto);
 

@@ -4,15 +4,16 @@ require_once("logica-usuario.php");
 require_once("banco-produto.php");
 verificaUsuario();
 
+$usado = (isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
+
 $categoria = new Categoria();
 $categoria->setId($_POST['categoria_id']);
 
-$produto = new Produto();
-$produto->setNome($_POST['nome']);
-$produto->setPreco($_POST['preco']);
-$produto->setDescricao($_POST['descricao']);
-$produto->setCategoria($categoria);
-$produto->setUsado(isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
+$produto = new Produto($_POST['nome'],
+                       $_POST['preco'],
+                       $_POST['descricao'],
+                       $categoria,
+                       $usado);
 
 $resultadoInsercao = insereProduto($conexao, $produto);
 
