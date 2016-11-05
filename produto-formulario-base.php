@@ -35,9 +35,3 @@
             <input type="text" name="isbn" value="<?php echo  $produto->temIsbn() ? $produto->getIsbn() : ""; ?>">
         </td>
     </tr>
-    <tr>
-        <td>
-            <input class="btn btn-primary" type="submit" value="Alterar">
-        </td>
-    </tr>
-</table>

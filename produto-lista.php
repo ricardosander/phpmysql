@@ -17,6 +17,7 @@ if (isset($_GET['removido']) && $_GET['removido'] == true) {
         <td>Produto</td>
         <td>Preço</td>
         <td>Preço com descontro</td>
+        <td>Imposto</td>
         <td>Descrição</td>
         <td>Categoria</td>
         <td>ISBN</td>
@@ -30,6 +31,7 @@ foreach ($produtos as $produto) {
         <td><?= $produto->getNome() ?></td>
         <td><?= $produto->getPreco()  ?></td>
         <td><?= $produto->precoComDesconto() ?></td>
+        <td><?= $produto->calculaImposto() ?></td>
         <td><?= substr($produto->getDescricao(), 0, 40);  ?></td>
         <td><?= $produto->getCategoria()->getNome()  ?></td>
         <td><?php

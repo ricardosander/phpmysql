@@ -15,5 +15,11 @@ require_once("cabecalho.php"); ?>
 	<form action="altera-produto.php" method="post">
 		<input type="hidden" name="id" value="<?=$produto->getId()?>">
 		<?php require_once("produto-formulario-base.php"); ?>
+            <tr>
+                <td>
+                    <input class="btn btn-primary" type="submit" value="Alterar">
+                </td>
+            </tr>
+        </table>
 	</form>
 <?php require_once("rodape.php");
