@@ -1,7 +1,7 @@
 <?php
-session_start();
+require_once("autoload.php");
 require_once("logica-usuario.php");
-require_once("banco-produto.php");
+session_start();
 verificaUsuario();
 
 $usado = (isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
@@ -15,7 +15,8 @@ $produto = new Produto($_POST['nome'],
                        $categoria,
                        $usado);
 
-$resultadoInsercao = insereProduto($conexao, $produto);
+$produtoDao = new ProdutoDao($conexao);
+$resultadoInsercao = $produtoDao->insereProduto($produto);
 
 if ($resultadoInsercao) {
     $_SESSION['success'] = "Produto {$produto->getNome()}, {$produto->getPreco()} adicionado com sucesso!";

@@ -1,11 +1,13 @@
 <?php
-require_once("banco-categorias.php");
-require_once("banco-produto.php");
+require_once("autoload.php");
 
 $id = $_GET['id'];
 
-$categorias = listaCategorias($conexao);
-$produto = buscaProduto($conexao, $id);
+$categoriaDao = new CategoriaDao($conexao);
+$produtoDao = new ProdutoDao($conexao);
+
+$categorias = $categoriaDao->listaCategorias();
+$produto = $produtoDao->buscaProduto($id);
 $usado = $produto->getUsado() ? "checked=\"checked\"" : "";
 
 require_once("cabecalho.php"); ?>

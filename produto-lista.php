@@ -1,6 +1,8 @@
 <?php
-require_once("banco-produto.php");
-$produtos = listaProdutos($conexao);
+require_once("autoload.php");
+
+$produtoDao = new ProdutoDao($conexao);
+$produtos = $produtoDao->listaProdutos();
 
 require_once("cabecalho.php");
 

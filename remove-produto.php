@@ -1,9 +1,11 @@
 <?php
 session_start();
-require_once("banco-produto.php");
+require_once("autoload.php");
+
+$produtoDao = new ProdutoDao($conexao);
 
 $id = $_POST['id'];
-removerProduto($conexao, $id);
+$produtoDao->removerProduto($id);
 $_SESSION['danger'] = "Produto removido com sucesso.";
 header("Location: produto-lista.php");
 die;

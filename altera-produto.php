@@ -1,6 +1,6 @@
 <?php
+require_once("autoload.php");
 session_start();
-require_once("banco-produto.php");
 
 $usado = (isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
 
@@ -14,7 +14,8 @@ $produto = new Produto($_POST['nome'],
                        $usado);
 $produto->setId($_POST['id']);
 
-$resultadoAlteracao = alteraProduto($conexao, $produto);
+$produtoDao = new ProdutoDao($conexao);
+$resultadoAlteracao = $produtoDao->alteraProduto($produto);
 
 require_once("cabecalho.php");
 if ($resultadoAlteracao) {

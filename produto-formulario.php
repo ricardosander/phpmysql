@@ -1,10 +1,12 @@
 <?php
+require_once("autoload.php");
 require_once("logica-usuario.php");
-require_once("banco-categorias.php");
 
 verificaUsuario();
 
-$categorias = listaCategorias($conexao);
+$categoriaDao = new CategoriaDao($conexao);
+
+$categorias = $categoriaDao->listaCategorias();
 $categoria = new Categoria();
 $categoria->setId(1);
 $produto = new Produto("", "", "", $categoria, false);
