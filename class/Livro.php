@@ -15,4 +15,6 @@ abstract class Livro extends Produto {
     public function calculaImposto() {
         return $this->getPreco() * 0.065;
     }
+
+    abstract public function atualizaBaseadoEm($params);
 }

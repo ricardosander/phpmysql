@@ -13,7 +13,7 @@ alter table produtos add column categoria_id integer;
 update produtos set categoria_id = 3;
 alter table produtos add column usado boolean default false;
 create table usuarios (id integer auto_increment primary key, email varchar(255), senha varchar(255));
-insert into usuarios (email,senha) values ('rcksander@gmail.com', '9106689bdeb64ab47a9449a4719ab236');
+insert into usuarios (email,senha) values ('usuario@usuario.com', 'e10adc3949ba59abbe56e057f20f883e');
 ALTER TABLE produtos ADD COLUMN isbn VARCHAR(255);
 ALTER TABLE produtos ADD COLUMN tipoProduto VARCHAR(255);
 ALTER TABLE produtos ADD COLUMN waterMark VARCHAR(255);

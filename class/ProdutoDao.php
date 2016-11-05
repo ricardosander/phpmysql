@@ -58,10 +58,6 @@ class ProdutoDao {
 
         $factory = new ProdutoFactory();
         $produto = $factory->criaPor($tipo, $produtoArray);
-        $produto->atualizaBaseadoEm($produtoArray);
-        $produto->setTipo($tipo);
-        $produto->setId($produtoArray['id']);
-        $produto->setCategoria($categoria);
 
         return $produto;
     }
@@ -116,23 +112,13 @@ class ProdutoDao {
         $produtos = array();
         while ($produtoArray = mysqli_fetch_assoc($resultado)) {
 
-            $categoria = new Categoria();
-
-            $categoria->setId($produtoArray['categoria_id']);
-            $categoria->setNome($produtoArray['categoria']);
-
             $tipo = $produtoArray['tipoProduto'];
 
             $factory = new ProdutoFactory();
             $produto = $factory->criaPor($tipo, $produtoArray);
-            $produto->atualizaBaseadoEm($produtoArray);
-            $produto->setTipo($produtoArray['tipo']);
-            $produto->setId($produtoArray['id']);
-            $produto->setCategoria($categoria);
 
             array_push($produtos, $produto);
         }
-
         return $produtos;
     }
 }
