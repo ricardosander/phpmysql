@@ -1,5 +1,5 @@
 <?php
-require_once("Categoria.php");
+require_once("autoload.php");
 
 class Produto {
 

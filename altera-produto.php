@@ -1,8 +1,6 @@
 <?php
 session_start();
 require_once("banco-produto.php");
-require_once("class/Produto.php");
-require_once("class/Categoria.php");
 
 $usado = (isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
 
