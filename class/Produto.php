@@ -54,6 +54,10 @@ class Produto {
         return $this->preco;
     }
 
+    public function temIsbn() {
+        return $this instanceof Livro;
+    }
+
     public function __toString() {
         return "Nome: {$this->nome}, preço: {$this->preco}, categoria: "
                . (isset($this->categoria) ? $this->categoria->getNome() : "");

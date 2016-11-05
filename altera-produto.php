@@ -7,11 +7,13 @@ $usado = (isset($_POST['usado']) && $_POST['usado'] == true ? "true" : "false");
 $categoria = new Categoria();
 $categoria->setId($_POST['categoria_id']);
 
-$produto = new Produto($_POST['nome'],
-                       $_POST['preco'],
-                       $_POST['descricao'],
-                       $categoria,
-                       $usado);
+if (empty($_POST['isbn'])) {
+    $produto = new Produto($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
+} else {
+
+    $produto = new Livro($_POST['nome'], $_POST['preco'], $_POST['descricao'], $categoria, $usado);
+    $produto->setIsbn($_POST['isbn']);
+}
 $produto->setId($_POST['id']);
 
 $produtoDao = new ProdutoDao($conexao);

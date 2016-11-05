@@ -30,6 +30,12 @@
         <td><input type="checkbox" name="usado" <?=$usado?> value="true"> Usado</td>
     </tr>
     <tr>
+        <td>ISBN (Se for um livro)</td>
+        <td>
+            <input type="text" name="isbn" value="<?php echo  $produto->temIsbn() ? $produto->getIsbn() : ""; ?>">
+        </td>
+    </tr>
+    <tr>
         <td>
             <input class="btn btn-primary" type="submit" value="Alterar">
         </td>
